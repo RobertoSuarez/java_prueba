@@ -17,7 +17,7 @@
                 <h:form id="form" class="p-mx-6">
 
                     <div class="p-d-flex p-jc-between p-ai-center">
-                        <h1 class="secondary titulo-principal">Tabla publicación</h1>
+                        <h1 class="secondary titulo-principal">Tabla de Postulante</h1>
                         <div>
 
                             <p:outputLabel for="@next" value="Mostrar" style="margin-right: 2em"/>
@@ -35,11 +35,9 @@
                         <div class="p-col-2">
                             <p:selectOneMenu value="#{tablaPublicaciones.tipo}">
                                 <f:selectItem itemLabel="ID" itemValue="id"/>
-                                <f:selectItem itemLabel="Titulo" itemValue="titulo"/>
-                                <f:selectItem itemLabel="Año" itemValue="anio"/>
-                                <f:selectItem itemLabel="Fuente de publicación" itemValue="fuente"/>
-                                <f:selectItem itemLabel="Autor" itemValue="autor"/>
-                                <f:selectItem itemLabel="Hallazgo" itemValue="hallazgo"/>
+                                <f:selectItem itemLabel="Nombre" itemValue="titulo"/>
+                                <f:selectItem itemLabel="Apellido" itemValue="anio"/>
+                                <f:selectItem itemLabel="correo" itemValue="fuente"/>
                             </p:selectOneMenu>
                         </div>
                         <div class="p-col-8">
@@ -70,30 +68,30 @@
                         
                         <p:ajax event="rowSelect" update=":form:modalinfo" onsuccess="PF('dlginfo').show()" />
 
-                        <p:column sortBy="#{pub.titulo}" headerText="Título">
+                        <p:column  headerText="Título">
                             <h:outputText value="#{pub.titulo}" />
                         </p:column>
 
 
-                        <p:column sortBy="#{pub.autor}" headerText="Autor">
+                        <p:column headerText="Autor">
                             <h:outputText value="#{pub.autor}" />
                         </p:column>
-                        <p:column sortBy="#{pub.anio}" headerText="Año">
+                        <p:column  headerText="Año">
                             <h:outputText value="#{pub.anio}" />
                         </p:column>
 
-                        <p:column sortBy="#{pub.tipoPublicacion}" headerText="Tipo de publicación">
+                        <p:column  headerText="Tipo de publicación">
                             <h:outputText value="#{pub.tipoPublicacion}" />
                         </p:column>
-                        <p:column sortBy="#{pub.fuente}" headerText="Fuente">
+                        <p:column  headerText="Fuente">
                             <h:outputText value="#{pub.fuente}" />
                         </p:column>
 
-                        <p:column sortBy="#{pub.citasRecibidas}" headerText="Citas">
+                        <p:column headerText="Citas">
                             <h:outputText value="#{pub.citasRecibidas}" />
                         </p:column>
                         
-                        <p:column sortBy="#{pub.aprobado}" headerText="Aprobadas">
+                        <p:column  headerText="Aprobadas">
                             <h:outputText value="#{pub.aprobado}" />
                         </p:column>
 
