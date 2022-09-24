@@ -8,4 +8,5 @@ public interface IUsuario {
     public Usuario Login(String username, String password);
     public List<Usuario> ObtenerPostulantesNoHabilitados();
     public boolean AprobarPostulante(int id);
+    public Usuario RegistrarPostulante(Usuario postulante);
 }

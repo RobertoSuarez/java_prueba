@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package database;
 
 import java.sql.Connection;
@@ -14,10 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 
-/**
- *
- * @author elect
- */
 public class Conexion {
     public Connection connection;
     
@@ -26,7 +17,8 @@ public class Conexion {
     //Credenciales para la conexion
     private String host = "jdbc:postgresql://localhost:5432/guardia";
     private String user = "postgres";
-    private String password = "eliza26";
+    //private String password = "eliza26";
+    private String password = "123456";
     private String classForName = "org.postgresql.Driver";
 
     public Conexion() {

@@ -1,16 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controllers;
 
+import dao.UsuarioDAO;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import models.Usuario;
 
 @ManagedBean(name = "registroPostulantesMB")
-@SessionScoped
+@RequestScoped
 public class RegistrarPostulantesMB implements Serializable {
 
     private String username;
@@ -22,8 +24,13 @@ public class RegistrarPostulantesMB implements Serializable {
     private String cedula;
     private boolean habilitado;
     private boolean encuestado;
+    private Usuario postulante;
+    
+    private UsuarioDAO usuario_dao;
 
     public RegistrarPostulantesMB() {
+        this.postulante = new Usuario();
+        this.usuario_dao = new UsuarioDAO();
     }
 
     public RegistrarPostulantesMB(String username, String password, String role, String nombre, String apellido, String correo, String cedula, boolean habilitado, boolean encuestado) {
@@ -36,6 +43,17 @@ public class RegistrarPostulantesMB implements Serializable {
         this.cedula = cedula;
         this.habilitado = habilitado;
         this.encuestado = encuestado;
+    }
+    
+    public void registrar() {
+        System.out.println("Registrando: " + this.postulante.getUsername());
+        this.usuario_dao.RegistrarPostulante(this.postulante);
+        
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(RegistrarPostulantesMB.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     
@@ -110,9 +128,15 @@ public class RegistrarPostulantesMB implements Serializable {
     public void setEncuestado(boolean encuestado) {
         this.encuestado = encuestado;
     }
-     public void registrar(){
      
-     }
+
+    public Usuario getPostulante() {
+        return postulante;
+    }
+
+    public void setPostulante(Usuario postulante) {
+        this.postulante = postulante;
+    }
     
     
 }

@@ -11,49 +11,57 @@
     </h:head>
     <h:body>
         <div class="p-grid contenedor p-m-0 p-p-0" style="width: 100%;">
-            <div class="p-col-6 p-m-0 p-p-0">
+            <div class="p-col-6 p-px-5">
                 <div class="card ui-fluid">
                     <h:form id="postulante_registrar" class="regis_postu">
                         <p:growl id="growl" showDetail="true" />
 
                         <p  class="p-text-center p-my-5 secondary" style="font-size: 3em; font-weight: bold">Registrar Postulante</p>
 
-                        <span class="ui-float-label p-my-6" >
-                            <p:inputText id="username" value="#{usuarioMB.usuario.username}" />
+                        <span class="ui-float-label p-my-3" >
+                            <p:inputText id="username" value="#{registroPostulantesMB.postulante.username}" />
                             <p:outputLabel for="@previous" value="Nombre de usuario"/>
                         </span>
 
                         <span class="ui-float-label p-my-3 ">
-                            <p:inputText type="password" id="contraseña" value="#{usuarioMB.usuario.password}" />
+                            <p:inputText type="password" id="contraseña" value="#{registroPostulantesMB.postulante.password}" />
                             <p:outputLabel for="@previous" value="Contraseña"/>
                         </span>
                         <span class="ui-float-label p-my-3">
-                            <p:inputText id="nombre" value="#{usuarioMB.usuario.nombre}" />
+                            <p:inputText id="nombre" value="#{registroPostulantesMB.postulante.nombre}" />
                             <p:outputLabel for="@previous" value="Nombres"/>
                         </span>
                         <span class="ui-float-label p-my-3">
-                            <p:inputText id="apellido" value="#{usuarioMB.usuario.apellido}" />
+                            <p:inputText id="apellido" value="#{registroPostulantesMB.postulante.apellido}" />
                             <p:outputLabel for="@previous" value="Apellido"/>
                         </span>
                         <span class="ui-float-label p-my-3">
-                            <p:inputText type="email" id="correo" value="#{usuarioMB.usuario.correo}" />
+                            <p:inputText type="email" id="correo" value="#{registroPostulantesMB.postulante.correo}" />
                             <p:outputLabel for="@previous" value="Correo"/>
                         </span>
                         <span class="ui-float-label p-my-3">
-                            <p:inputText id="cedula" value="#{usuarioMB.usuario.cedula}" />
+                            <p:inputText id="cedula" value="#{registroPostulantesMB.postulante.cedula}" />
                             <p:outputLabel for="@previous" value="Cedula"/>
                         </span>
-                        <p:commandButton id="s" value="Registrarse" styleClass="bgprimary" update="growl" class="bgprimary border-primary" ajax="false"  process="@this"/><br></br>
-                        <a
-                            type="button" 
-                            class="btn btn-link mt-3 pt-3"
-                            href="index.xhtml">
-                            Regresar al login
-                        </a>
+                        <p:commandButton 
+                            value="Registrarse" 
+                            styleClass="bgprimary" 
+                            update="growl" 
+                            class="bgprimary border-primary"  
+                            action="#{registroPostulantesMB.registrar}"
+                            />
+                        <div class="p-my-3">
+                            <a
+                                type="button" 
+                                class="btn btn-link mt-3 pt-3"
+                                href="index.xhtml">
+                                Regresar al login
+                            </a>
+                        </div>
                     </h:form>                    
                 </div>                
             </div>
-            <div class="p-col-6 p-m-0 p-p-0">
+            <div class="p-col-6">
                 <div class="imagen" style="background-image: url('#{resource['img/seguridad.png']}')">
 
                 </div>

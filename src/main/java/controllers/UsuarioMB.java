@@ -71,10 +71,19 @@ public class UsuarioMB implements Serializable {
             session.setAttribute("password", this.usuario.getPassword());
             session.setAttribute("role", this.usuario.getRole());
             session.setAttribute("id_usuario", this.usuario.getIdUsuario());
-            try {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("tablaPublicaciones.xhtml");
-            } catch (IOException ex) {
-                Logger.getLogger(UsuarioMB.class.getName()).log(Level.SEVERE, null, ex);
+            
+            if (!this.usuario.isEncuestado()) {
+                try {
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("encuesta.xhtml");
+                } catch (IOException ex) {
+                    Logger.getLogger(UsuarioMB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                try {
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("tablaPublicaciones.xhtml");
+                } catch (IOException ex) {
+                    Logger.getLogger(UsuarioMB.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         } else {
             addMessage(FacesMessage.SEVERITY_ERROR, "Error credenciales", "Usuario o contrseña incorrectos");
