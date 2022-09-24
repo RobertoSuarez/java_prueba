@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="nav.css"/>
+    </h:head>
+    <h:body>
+        <h:form class="">
+
+            <p:menubar>
+                <p:menuitem outcome="tablaPublicaciones">
+                    <span class="secondary titulo">Sistema de control</span>
+                    <f:param name="productId" value="10"/>
+                </p:menuitem>
+
+                <p:menuitem 
+                    value="Postulantes por aprobar" 
+                    rendered="#{usuarioMB.esAdministrador()}" 
+                    outcome="postulantes">
+                </p:menuitem>
+                
+                <p:menuitem value="Tabla de publicaciones" outcome="tablaPublicaciones">
+                    
+                </p:menuitem>
+                
+                <p:menuitem value="Registrar" outcome="registrar">
+                    <f:param name="productId" value="10"/>
+                </p:menuitem>
+
+                <f:facet name="options">
+                    <span class="p-mr-3">Usuario: #{usuarioMB.usuario.username}</span>
+                    <span class="p-mr-3">Modo: #{usuarioMB.usuario.role}</span>
+                    <p:commandButton 
+                        action="#{usuarioMB.logout()}" 
+                        value="Cerrar sesion" 
+                        icon="pi pi-fw pi-sign-out" 
+                        styleClass="ui-button-info">
+                    </p:commandButton>
+                </f:facet>
+            </p:menubar>
+
+        </h:form>
+    </h:body>
+</html>
+
