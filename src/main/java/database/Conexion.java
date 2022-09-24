@@ -17,8 +17,8 @@ public class Conexion {
     //Credenciales para la conexion
     private String host = "jdbc:postgresql://localhost:5432/guardia";
     private String user = "postgres";
-    //private String password = "eliza26";
-    private String password = "123456";
+    private String password = "eliza26";
+    //private String password = "123456";
     private String classForName = "org.postgresql.Driver";
 
     public Conexion() {

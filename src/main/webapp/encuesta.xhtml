@@ -1,12 +1,165 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Encuesta postulante</title>
+        <h:outputStylesheet library="webjars" name="primeflex/2.0.0/primeflex.min.css" />
+        <h:outputStylesheet library="css" name="encuesta.css"/>
     </h:head>
     <h:body>
-        <h2>Encuesta</h2>
+        <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+            <div class="wrapper wrapper--w680">
+                <div class="card card-4">
+                    <div class="card-body">
+                        <h2 class="title">Encuesta</h2>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <div class="input-group">
+                                        <label
+                                            class="label">Antecedentes Penales</label>
+                                        <p:selectOneRadio
+                                            id="penales" value="#{encuestaBM}"
+                                            layout="responsive" columns="2">
+                                            <f:selectItem
+                                                itemLabel="Si" itemValue="Si" />
+                                            <f:selectItem
+                                                itemLabel="No" itemValue="No" />
+
+                                        </p:selectOneRadio>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label
+                                    class="label">Fuma</label>
+                                <p:selectOneRadio id="fuma"
+                                                  value="#{encuestaController.fuma}"
+                                                  layout="responsive" columns="2">
+                                    <f:selectItem
+                                        itemLabel="Si" itemValue="Si" />
+                                    <f:selectItem
+                                        itemLabel="No" itemValue="No" />
+                                </p:selectOneRadio>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label
+                                        class="label">Tatuaje</label>
+                                    <div class="input-group-icon">
+                                        <p:selectOneRadio
+                                            id="tatuaje" value="#{encuestaController.tatuaje}"
+                                            layout="responsive" columns="2">
+                                            <f:selectItem
+                                                itemLabel="Si" itemValue="Si" />
+                                            <f:selectItem
+                                                itemLabel="No" itemValue="No" />
+                                        </p:selectOneRadio>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Formación Académica</label>
+                            <p:selectOneRadio id="estadacademico"
+                                              value="#{encuestaController.formacademica}"
+                                              layout="responsive"
+                                              columns="2">
+                                <f:selectItem itemLabel="Educación
+                                              primaria" itemValue="Educación primaria" />
+                                <f:selectItem itemLabel="Educación
+                                              secundaria" itemValue="Educación superior" />
+                                <f:selectItem itemLabel="Educación
+                                              superior" itemValue="Divorciado" />
+                            </p:selectOneRadio>
+                        </div>
+                        <hr></hr>
+                        <br></br>
+                        <h2 class="title">Completar Información Personal</h2>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Fecha de Nacimiento</label>
+                                    <p:datePicker pattern="yyyy-MM-dd" id="lazy" value="#{encuestaMB}"
+                                                  model="#{datePickerMetadataView.modelLazy}"
+                                                  monthNavigator="true" yearNavigator="true" showIcon="true"
+                                                  placeholder="Fecha de Nacimiento"/>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="input-group">
+                                    <label class="label">Subir foto</label>
+                                    <h:form enctype="multipart/form-data">
+                                        <p:fileUpload value="#{encuestaMB}" mode="simple" skinSimple="true"/>
+                                        <!-- comment 
+                                        <p:commandButton value="Submit" ajax="false" action="#{encuestaMB}" styleClass="mt-3 ui-button-outlined block"/>-->
+                                    </h:form>
+                                </div>
+                            </div>  
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label
+                                        class="label">Celular</label>
+                                    <p:inputText id="phone"
+                                                 type="text" value="#{encuestaController.celular}" required="true"
+                                                 placeholder="Ingrese su Celular" requiredMessage="El formato del
+                                                 celular se encuentra incorrecto"/>
+                                </div>
+                            </div>                            
+                        </div> 
+                        <div class="input-group">
+                            <label class="label">Estado Civi</label>
+                            <p:selectOneRadio id="estadcivil"
+                                              value="#{encuestaMB}"
+                                              layout="responsive"
+                                              columns="2">
+                                <f:selectItem itemLabel="Soltero"
+                                              itemValue="Soltero" />
+                                <f:selectItem itemLabel="Casado"
+                                              itemValue="Casado" />
+                                <f:selectItem
+                                    itemLabel="Divorciado " itemValue="Divorciado" />
+                                <f:selectItem itemLabel="Viudo"
+                                              itemValue="Viudo" />
+                            </p:selectOneRadio>
+                        </div>
+                        <div class="field">
+                            <div class="input-group">
+                                <label
+                                    class="label">Localización</label>
+                                <p:inputText id="adress"
+                                             type="text" value="#{encuestaMB}" required="true"
+                                             placeholder="Ingrese su dirección" requiredMessage="El formato del
+                                             dirección se encuentra incorrecto"/>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="input-group">
+                                <label class="label">Subir Solicitud</label>
+                                <h:form enctype="multipart/form-data">
+                                    <p:fileUpload value="#{encuestaMB}" mode="simple" skinSimple="true"/>
+                                    <!-- comment 
+                                    <p:commandButton value="Submit" ajax="false" action="#{encuestaMB}" styleClass="mt-3 ui-button-outlined block"/>-->
+                                </h:form>                                
+                            </div>
+                            <div class="p-t-15">
+                                <h:commandButton class="btn btn--
+                                                 radius-2 btn--blue" value="Enviar"
+                                                 action="#{encuestaController.saveencuesta}" rendered="true"
+                                                 style="top: 3rem;"/>
+                            </div> 
+                        </div> 
+                    </div>  
+                </div>  
+            </div>  
+        </div>  
     </h:body>
 </html>
 

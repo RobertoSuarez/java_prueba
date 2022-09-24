@@ -10,7 +10,7 @@ public class Usuario {
     private String correo;
     private String cedula;
     private boolean habilitado;
-    private boolean encuestado; // si es true ya realizo la encuata, caso contrario no la ha realizado.
+    private boolean encuestado; // si es true ya realizo la encuata, caso contrario no la ha realizado.   
 
     public Usuario() {
         this.username = "";
