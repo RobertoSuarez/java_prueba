@@ -3,27 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package models;
 
-import java.io.Serializable;
 import java.sql.Date;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
-import models.Encuesta;
-import org.primefaces.model.file.UploadedFile;
 
 /**
  *
  * @author eliza
  */
-@ManagedBean(name = "encuestaMB")
-@RequestScoped
-public class EncuestaMB implements Serializable {
-
-    private UploadedFile file;
-    private Encuesta encuesta;
+public class Encuesta {
     //encuesta
     private int id_encuesta;
     private String antece_penales;
@@ -37,29 +25,6 @@ public class EncuestaMB implements Serializable {
     private String estado_civil;
     private String localizacion;
     private String solicitud;
-
-    public void upload() {
-        if (file != null) {
-            FacesMessage message = new FacesMessage("Successful", file.getFileName() + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, message);
-        }
-    }
-
-    public UploadedFile getFile() {
-        return file;
-    }
-
-    public void setFile(UploadedFile file) {
-        this.file = file;
-    }
-
-    public Encuesta getEncuesta() {
-        return encuesta;
-    }
-
-    public void setEncuesta(Encuesta encuesta) {
-        this.encuesta = encuesta;
-    }
 
     public int getId_encuesta() {
         return id_encuesta;
@@ -148,24 +113,7 @@ public class EncuestaMB implements Serializable {
     public void setSolicitud(String solicitud) {
         this.solicitud = solicitud;
     }
-
-    public EncuestaMB() {
-    }
-
-    public EncuestaMB(UploadedFile file, Encuesta encuesta, int id_encuesta, String antece_penales, String fuma, String tatuajes, String Forma_academica, Date fecha_nace, String foto, String celular, String estado_civil, String localizacion, String solicitud) {
-        this.file = file;
-        this.encuesta = encuesta;
-        this.id_encuesta = id_encuesta;
-        this.antece_penales = antece_penales;
-        this.fuma = fuma;
-        this.tatuajes = tatuajes;
-        this.Forma_academica = Forma_academica;
-        this.fecha_nace = fecha_nace;
-        this.foto = foto;
-        this.celular = celular;
-        this.estado_civil = estado_civil;
-        this.localizacion = localizacion;
-        this.solicitud = solicitud;
-    }
-
+    
+    
+    
 }
