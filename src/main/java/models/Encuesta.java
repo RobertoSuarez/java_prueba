@@ -25,6 +25,7 @@ public class Encuesta {
     private String estado_civil;
     private String localizacion;
     private String solicitud;
+    private int id_usuario;
 
     public int getId_encuesta() {
         return id_encuesta;
@@ -112,6 +113,14 @@ public class Encuesta {
 
     public void setSolicitud(String solicitud) {
         this.solicitud = solicitud;
+    }
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
     
     

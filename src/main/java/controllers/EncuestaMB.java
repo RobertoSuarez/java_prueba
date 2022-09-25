@@ -45,6 +45,9 @@ public class EncuestaMB implements Serializable {
         }
     }
 
+    public void guardar() {
+    }
+
     public UploadedFile getFile() {
         return file;
     }
