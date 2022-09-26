@@ -80,7 +80,7 @@ public class UsuarioMB implements Serializable {
                 }
             } else {
                 try {
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("tablaPublicaciones.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("postulantes.xhtml");
                 } catch (IOException ex) {
                     Logger.getLogger(UsuarioMB.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -42,7 +42,7 @@ public class UsuarioDAO implements IUsuario {
             /* ejemplo
             select id_usuario, username, password, role 
                 from usuario
-                where username='roberto' AND password='facil';
+                where username='ericka' AND password='ericka';
                 
             */
             PreparedStatement stmt = conn.connection.prepareStatement("select id_usuario, username, password, role, encuestado FROM usuario WHERE username=? AND password=? AND habilitado=true;");
@@ -90,7 +90,7 @@ public class UsuarioDAO implements IUsuario {
             /* ejemplo
             select id_usuario, username, password, role 
                 from usuario
-                where username='roberto' AND password='facil';
+                where username='ericka' AND password='ericka';
                 
             */
             PreparedStatement stmt = conn.connection.prepareStatement(
@@ -146,7 +146,7 @@ public class UsuarioDAO implements IUsuario {
             /* ejemplo
             select id_usuario, username, password, role 
                 from usuario
-                where username='roberto' AND password='facil';
+                where username='ericka' AND password='ericka';
                 
             */
             PreparedStatement stmt = conn.connection.prepareStatement(
@@ -220,6 +220,5 @@ public class UsuarioDAO implements IUsuario {
         
         postulante.setIdUsuario(id);
         return postulante;
-    }
-    
+    }    
 }

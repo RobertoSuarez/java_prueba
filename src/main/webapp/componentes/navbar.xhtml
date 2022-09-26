@@ -12,23 +12,17 @@
         <h:form class="">
 
             <p:menubar>
-                <p:menuitem outcome="tablaPublicaciones">
+                <p:menuitem outcome="postulantes">
                     <span class="secondary titulo">Sistema de control</span>
-                    <f:param name="productId" value="10"/>
                 </p:menuitem>
 
                 <p:menuitem 
-                    value="Postulantes por aprobar" 
+                    value="formacion y equipamiento" 
                     rendered="#{usuarioMB.esAdministrador()}" 
-                    outcome="postulantes">
+                    outcome="equipamiento">
                 </p:menuitem>
                 
-                <p:menuitem value="formacion y equipamiento" outcome="tablaPublicaciones">
-                    
-                </p:menuitem>
-                
-                <p:menuitem value="Registrar" outcome="registrar">
-                    <f:param name="productId" value="10"/>
+                <p:menuitem value="instituciones" outcome="instituciones">                    
                 </p:menuitem>
 
                 <f:facet name="options">

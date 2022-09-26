@@ -47,13 +47,16 @@ public class EncuestaDAO implements IEncuesta {
                             "UPDATE public.usuario"
                             + "	SET encuestado=true, fecha_nace=?, foto=?, celular=?, estado_civil=?, localizacion=?, solicitud=?"
                             + "	WHERE id_usuario=?;");
-            
+            stmtu.setInt(1, id);
+            stmtu.executeQuery();
+
             //insertamos a la tabla encuesta
             PreparedStatement stmt = conn.connection
                     .prepareStatement(
                             "INSERT INTO public.encuesta("
                             + "	antece_penales, fuma, tatuajes, forma_academica, id_usuario)"
-                            + "	VALUES ( ?, ?, ?, ?, ?);");
+                            + "	VALUES ( ?, ?, ?, ?, ?)"
+                            + "RETURNING id_usuario;");
 
 //            // establecer valores de la consulta
             stmt.setString(1, encuesta.getAntece_penales());
@@ -62,6 +65,7 @@ public class EncuestaDAO implements IEncuesta {
             stmt.setString(4, encuesta.getForma_academica());
 
             ResultSet resultado = stmt.executeQuery();
+            ResultSet result = stmtu.executeQuery();
             while (resultado.next()) {
                 id = resultado.getInt("id_usuario");
             }
