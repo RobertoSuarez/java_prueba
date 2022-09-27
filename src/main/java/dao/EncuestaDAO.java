@@ -40,15 +40,15 @@ public class EncuestaDAO implements IEncuesta {
             } catch (SQLException ex) {
                 Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            //actualizamos la tabla usuario
-            PreparedStatement stmtu = conn.connection
-                    .prepareStatement(
-                            "UPDATE public.usuario"
-                            + "	SET encuestado=true, fecha_nace=?, foto=?, celular=?, estado_civil=?, localizacion=?, solicitud=?"
-                            + "	WHERE id_usuario=?;");
-            stmtu.setInt(1, id);
-            stmtu.executeQuery();
+//
+//            //actualizamos la tabla usuario
+//            PreparedStatement stmtu = conn.connection
+//                    .prepareStatement(
+//                            "UPDATE public.usuario"
+//                            + "	SET encuestado=true, fecha_nace=?, foto=?, celular=?, estado_civil=?, localizacion=?, solicitud=?"
+//                            + "	WHERE id_usuario=?;");
+//            stmtu.setInt(1, id);
+//            stmtu.executeQuery();
 
             //insertamos a la tabla encuesta
             PreparedStatement stmt = conn.connection
@@ -63,9 +63,10 @@ public class EncuestaDAO implements IEncuesta {
             stmt.setString(2, encuesta.getFuma());
             stmt.setString(3, encuesta.getTatuajes());
             stmt.setString(4, encuesta.getForma_academica());
+            stmt.setInt(5, id);
 
             ResultSet resultado = stmt.executeQuery();
-            ResultSet result = stmtu.executeQuery();
+//            ResultSet result = stmtu.executeQuery();
             while (resultado.next()) {
                 id = resultado.getInt("id_usuario");
             }

@@ -5,8 +5,12 @@
  */
 package controllers;
 
+import dao.EncuestaDAO;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -24,6 +28,7 @@ public class EncuestaMB implements Serializable {
 
     private UploadedFile file;
     private Encuesta encuesta;
+    private EncuestaDAO encuesta_dao;
     //encuesta
     private int id_encuesta;
     private String antece_penales;
@@ -38,14 +43,26 @@ public class EncuestaMB implements Serializable {
     private String localizacion;
     private String solicitud;
 
+    public EncuestaMB() {
+        this.encuesta = new Encuesta();
+        this.encuesta_dao = new EncuestaDAO();
+    }
+
+    public void guardar() {
+        this.encuesta_dao.GuardarEncuesta(this.encuesta);
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("postulante.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(RegistrarPostulantesMB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         System.out.println("he guardado");
+    }
+
     public void upload() {
         if (file != null) {
             FacesMessage message = new FacesMessage("Successful", file.getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
-    }
-
-    public void guardar() {
     }
 
     public UploadedFile getFile() {
@@ -150,9 +167,6 @@ public class EncuestaMB implements Serializable {
 
     public void setSolicitud(String solicitud) {
         this.solicitud = solicitud;
-    }
-
-    public EncuestaMB() {
     }
 
     public EncuestaMB(UploadedFile file, Encuesta encuesta, int id_encuesta, String antece_penales, String fuma, String tatuajes, String Forma_academica, Date fecha_nace, String foto, String celular, String estado_civil, String localizacion, String solicitud) {
