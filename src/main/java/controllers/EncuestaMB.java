@@ -56,6 +56,7 @@ public class EncuestaMB implements Serializable {
     }
 
     public void guardar() {
+        //extraer el usuario
         HttpSession session = SessionUtils.getSession();
         int id_usuario = (int) session.getAttribute("id_usuario");
         System.out.println("id - usuario: " + id_usuario);
@@ -93,9 +94,9 @@ public class EncuestaMB implements Serializable {
         this.encuesta.setId_usuario(id_usuario);
         this.encuesta_dao.GuardarEncuesta(this.encuesta);
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("postulantes.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("app.xhtml");
         } catch (IOException ex) {
-            Logger.getLogger(RegistrarPostulantesMB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EncuestaMB.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         if (encuesta.getFileFoto() != null) {
