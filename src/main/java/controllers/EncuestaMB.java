@@ -7,7 +7,12 @@ package controllers;
 
 import dao.EncuestaDAO;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,8 +20,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import models.Encuesta;
 import org.primefaces.model.file.UploadedFile;
+import org.primefaces.shaded.commons.io.FilenameUtils;
 
 /**
  *
@@ -49,13 +56,52 @@ public class EncuestaMB implements Serializable {
     }
 
     public void guardar() {
+        HttpSession session = SessionUtils.getSession();
+        int id_usuario = (int) session.getAttribute("id_usuario");
+        System.out.println("id - usuario: " + id_usuario);
+        
+        
+        //InputStream stream = encuesta.getFileFoto().getInputStream();
+        // almacenamiento de las fotos.
+        Path folder = Paths.get("C:\\archivos-proyecto\\fotos\\");
+        String filename = FilenameUtils.getBaseName(encuesta.getFileFoto().getFileName());
+        String extension = FilenameUtils.getExtension(encuesta.getFileFoto().getFileName());
+        try {
+            Path filee = Files.createTempFile(folder, filename + "-", "." + extension);
+            this.encuesta.setFoto(filee.getFileName().toString());
+            try (InputStream input = encuesta.getFileFoto().getInputStream()) {
+                Files.copy(input, filee, StandardCopyOption.REPLACE_EXISTING);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(EncuestaMB.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+        // almacenamiento de los pdf
+        Path folderpdf = Paths.get("C:\\archivos-proyecto\\pdf\\");
+        String filenamepdf = FilenameUtils.getBaseName(encuesta.getFilepdf().getFileName());
+        String extensionpdf = FilenameUtils.getExtension(encuesta.getFilepdf().getFileName());
+        try {
+            Path filepdf = Files.createTempFile(folderpdf, filenamepdf + "-", "." + extensionpdf);
+            this.encuesta.setSolicitud(filepdf.getFileName().toString());
+            try (InputStream input = encuesta.getFilepdf().getInputStream()) {
+                Files.copy(input, filepdf, StandardCopyOption.REPLACE_EXISTING);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(EncuestaMB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        this.encuesta.setId_usuario(id_usuario);
         this.encuesta_dao.GuardarEncuesta(this.encuesta);
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("postulante.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("postulantes.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(RegistrarPostulantesMB.class.getName()).log(Level.SEVERE, null, ex);
         }
-         System.out.println("he guardado");
+        
+        if (encuesta.getFileFoto() != null) {
+            System.out.println("Nombre del archivo: " + encuesta.getFileFoto().getFileName());
+        }
+        System.out.println("he guardado");
     }
 
     public void upload() {

@@ -1,7 +1,8 @@
 
 package models;
 
-import java.sql.Date;
+import java.util.Date;
+import org.primefaces.model.file.UploadedFile;
 
 
 public class Encuesta {
@@ -14,6 +15,8 @@ public class Encuesta {
     //completar información personal
     private Date fecha_nace;
     private String foto;
+    private UploadedFile fileFoto;
+    private UploadedFile filepdf;
     private String celular;
     private String estado_civil;
     private String localizacion;
@@ -114,6 +117,22 @@ public class Encuesta {
 
     public void setId_usuario(int id_usuario) {
         this.id_usuario = id_usuario;
+    }
+
+    public UploadedFile getFileFoto() {
+        return fileFoto;
+    }
+
+    public void setFileFoto(UploadedFile fileFoto) {
+        this.fileFoto = fileFoto;
+    }
+
+    public UploadedFile getFilepdf() {
+        return filepdf;
+    }
+
+    public void setFilepdf(UploadedFile filepdf) {
+        this.filepdf = filepdf;
     }
     
     

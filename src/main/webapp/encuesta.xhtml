@@ -10,149 +10,157 @@
         <h:outputStylesheet library="css" name="encuesta.css"/>
     </h:head>
     <h:body>
-        <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
-            <div class="wrapper wrapper--w680">
-                <div class="card card-4">
-                    <div class="card-body">
-                        <h2 class="title">Encuesta</h2>
-                        <div class="col-2">
-                            <div class="input-group">
-                                <label  class="label">Antecedentes Penales</label>
-                                <p:selectOneRadio  id="penales"                                                            
-                                                   value="#{encuestaMB.encuesta.antece_penales}"
-                                                   layout="responsive" columns="2">
-                                    <f:selectItem
-                                        itemLabel="Si" itemValue="Si" />
-                                    <f:selectItem
-                                        itemLabel="No" itemValue="No" />
-                                </p:selectOneRadio>
-                            </div>  
-                        </div>
-                        <div class="col-2">
-                            <div class="input-group">
-                                <label   class="label">Fuma</label>
-                                <p:selectOneRadio id="fuma"
-                                                  value="#{encuestaMB.encuesta.fuma}"
-                                                  layout="responsive" columns="2">
-                                    <f:selectItem
-                                        itemLabel="Si" itemValue="Si" />
-                                    <f:selectItem
-                                        itemLabel="No" itemValue="No" />
-                                </p:selectOneRadio>
+        <h:form enctype="multipart/form-data">
+            <p:growl id="growl" showDetail="true" />
+            
+            <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+                <div class="wrapper wrapper--w680">
+                    <div class="card card-4">
+                        <div class="card-body">
+                            <h2 class="title">Encuesta</h2>
+                            <span class="p-mr-3">Usuario: #{usuarioMB.usuario.username}</span>
+                            <span class="p-mr-3">Usuario: #{usuarioMB.usuario.idUsuario}</span>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label  class="label">Antecedentes Penales</label>
+                                    <p:selectOneRadio  id="penales"                                                            
+                                                       value="#{encuestaMB.encuesta.antece_penales}"
+                                                       layout="responsive" columns="2">
+                                        <f:selectItem
+                                            itemLabel="Si" itemValue="Si" />
+                                        <f:selectItem
+                                            itemLabel="No" itemValue="No" />
+                                    </p:selectOneRadio>
+                                </div>  
                             </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="input-group">
-                                <label  class="label">Tatuaje</label>
-                                <div class="input-group-icon">
-                                    <p:selectOneRadio
-                                        id="tatuaje" value="#{encuestaMB.encuesta.tatuajes}"
-                                        layout="responsive" columns="2">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label   class="label">Fuma</label>
+                                    <p:selectOneRadio id="fuma"
+                                                      value="#{encuestaMB.encuesta.fuma}"
+                                                      layout="responsive" columns="2">
                                         <f:selectItem
                                             itemLabel="Si" itemValue="Si" />
                                         <f:selectItem
                                             itemLabel="No" itemValue="No" />
                                     </p:selectOneRadio>
                                 </div>
-                            </div>                            
-                        </div>
-                        <div class="input-group">
-                            <label class="label">Formación Académica</label>
-                            <p:selectOneRadio id="estadacademico"
-                                              value="#{encuestaMB.encuesta.forma_academica}"
-                                              layout="responsive"
-                                              columns="2">
-                                <f:selectItem itemLabel="Educación
-                                              primaria" itemValue="Educación primaria" />
-                                <f:selectItem itemLabel="Educación
-                                              secundaria" itemValue="Educación superior" />
-                                <f:selectItem itemLabel="Educación
-                                              superior" itemValue="Divorciado" />
-                            </p:selectOneRadio>
-                        </div>
-                        <hr></hr>
-                        <br></br>
-                        <h2 class="title">Completar Información Personal</h2>
-                        <div class="row row-space">
+                            </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Fecha de Nacimiento</label>
-                                    <p:datePicker pattern="yyyy-MM-dd" id="lazy" value="#{encuestaMB.encuesta.fecha_nace}"
-                                                  model="#{datePickerMetadataView.modelLazy}"
-                                                  monthNavigator="true" yearNavigator="true" showIcon="true"
-                                                  placeholder="Fecha de Nacimiento"/>
+                                    <label  class="label">Tatuaje</label>
+                                    <div class="input-group-icon">
+                                        <p:selectOneRadio
+                                            id="tatuaje" value="#{encuestaMB.encuesta.tatuajes}"
+                                            layout="responsive" columns="2">
+                                            <f:selectItem
+                                                itemLabel="Si" itemValue="Si" />
+                                            <f:selectItem
+                                                itemLabel="No" itemValue="No" />
+                                        </p:selectOneRadio>
+                                    </div>
+                                </div>                            
+                            </div>
+                            <div class="input-group">
+                                <label class="label">Formación Académica</label>
+                                <p:selectOneRadio id="estadacademico"
+                                                  value="#{encuestaMB.encuesta.forma_academica}"
+                                                  layout="responsive"
+                                                  columns="2">
+                                    <f:selectItem itemLabel="Educación
+                                                  primaria" itemValue="Educación primaria" />
+                                    <f:selectItem itemLabel="Educación
+                                                  secundaria" itemValue="Educación superior" />
+                                    <f:selectItem itemLabel="Educación
+                                                  superior" itemValue="Educación superior" />
+                                </p:selectOneRadio>
+                            </div>
+                            <hr></hr>
+                            <br></br>
+                            <h2 class="title">Completar Información Personal</h2>
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">Fecha de Nacimiento</label>
+                                        <p:datePicker pattern="yyyy-MM-dd" id="lazy" value="#{encuestaMB.encuesta.fecha_nace}"
+                                                      model="#{datePickerMetadataView.modelLazy}"
+                                                      monthNavigator="true" yearNavigator="true" showIcon="true"
+                                                      placeholder="Fecha de Nacimiento"/>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="input-group">
+                                        <label class="label">Subir foto</label>
+
+                                        <p:fileUpload value="#{encuestaMB.encuesta.fileFoto}" mode="simple" skinSimple="true"
+                                                          allowTypes="/(\.|\/)(jpe?g|png)$/"
+                                                          validateContentType="true" accept=".jpg,.jpeg,.png"/>
+                                            <!-- comment 
+                                            <p:commandButton value="Submit" ajax="false" action="#{encuestaMB}" styleClass="mt-3 ui-button-outlined block"/>-->
+
+                                    </div>
+                                </div>  
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label
+                                            class="label">Celular</label>
+                                        <p:inputText id="phone"
+                                                     type="text" value="#{encuestaMB.encuesta.celular}" required="true"
+                                                     placeholder="Ingrese su Celular" requiredMessage="El formato del
+                                                     celular se encuentra incorrecto"/>
+                                    </div>
+                                </div>                            
+                            </div> 
+                            <div class="input-group">
+                                <label class="label">Estado Civil</label>
+                                <p:selectOneRadio id="estadcivil"
+                                                  value="#{encuestaMB.encuesta.estado_civil}"
+                                                  layout="responsive"
+                                                  columns="2">
+                                    <f:selectItem itemLabel="Soltero"
+                                                  itemValue="Soltero" />
+                                    <f:selectItem itemLabel="Casado"
+                                                  itemValue="Casado" />
+                                    <f:selectItem
+                                        itemLabel="Divorciado " itemValue="Divorciado" />
+                                    <f:selectItem itemLabel="Viudo"
+                                                  itemValue="Viudo" />
+                                </p:selectOneRadio>
+                            </div>
+                            <div class="field">
+                                <div class="input-group">
+                                    <label
+                                        class="label">Localización</label>
+                                    <p:inputText id="adress"
+                                                 type="text" value="#{encuestaMB.encuesta.localizacion}" required="true"
+                                                 placeholder="Ingrese su dirección" requiredMessage="El formato del
+                                                 dirección se encuentra incorrecto"/>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="input-group">
-                                    <label class="label">Subir foto</label>
+                                    <label class="label">Subir Solicitud</label>
                                     <h:form enctype="multipart/form-data">
-                                        <p:fileUpload value="#{encuestaMB.encuesta.foto}" mode="simple" skinSimple="true"
-                                                      allowTypes="/(\.|\/)(jpe?g|png)$/"
-                                                      validateContentType="true" accept=".jpg,.jpeg,.png"/>
-                                        <!-- comment 
-                                        <p:commandButton value="Submit" ajax="false" action="#{encuestaMB}" styleClass="mt-3 ui-button-outlined block"/>-->
-                                    </h:form>
-                                </div>
-                            </div>  
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label
-                                        class="label">Celular</label>
-                                    <p:inputText id="phone"
-                                                 type="text" value="#{encuestaMB.encuesta.celular}" required="true"
-                                                 placeholder="Ingrese su Celular" requiredMessage="El formato del
-                                                 celular se encuentra incorrecto"/>
-                                </div>
-                            </div>                            
-                        </div> 
-                        <div class="input-group">
-                            <label class="label">Estado Civil</label>
-                            <p:selectOneRadio id="estadcivil"
-                                              value="#{encuestaMB.encuesta.estado_civil}"
-                                              layout="responsive"
-                                              columns="2">
-                                <f:selectItem itemLabel="Soltero"
-                                              itemValue="Soltero" />
-                                <f:selectItem itemLabel="Casado"
-                                              itemValue="Casado" />
-                                <f:selectItem
-                                    itemLabel="Divorciado " itemValue="Divorciado" />
-                                <f:selectItem itemLabel="Viudo"
-                                              itemValue="Viudo" />
-                            </p:selectOneRadio>
-                        </div>
-                        <div class="field">
-                            <div class="input-group">
-                                <label
-                                    class="label">Localización</label>
-                                <p:inputText id="adress"
-                                             type="text" value="#{encuestaMB.encuesta.localizacion}" required="true"
-                                             placeholder="Ingrese su dirección" requiredMessage="El formato del
-                                             dirección se encuentra incorrecto"/>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="input-group">
-                                <label class="label">Subir Solicitud</label>
-                                <h:form enctype="multipart/form-data">
-                                    <p:fileUpload value="#{encuestaMB.encuesta.solicitud}" mode="simple" skinSimple="true" 
-                                                  allowTypes="/(\.|\/)(pdf)$/"
-                                                  validateContentType="true" accept=".pdf"/>                                   
+                                        <p:fileUpload value="#{encuestaMB.encuesta.filepdf}" mode="simple" skinSimple="true" 
+                                                      allowTypes="/(\.|\/)(pdf)$/"
+                                                      validateContentType="true" accept=".pdf"/>                                   
 
-                                </h:form>                                
-                            </div>
-                            <div class="p-t-15">
-                                <h:commandButton class="btn btn--
-                                                 radius-2 btn--blue" value="Enviar"
-                                                 action="#{encuestaMB.guardar()}" rendered="true"
-                                                 style="top: 3rem;"/>
+                                    </h:form>                                
+                                </div>
+                                <div class="p-t-15">
+                                    <p:commandButton class="btn btn--radius-2 btn--blue" 
+                                                     value="Enviar"
+                                                     update="growl"
+                                                     action="#{encuestaMB.guardar}" 
+                                                     rendered="true"
+                                                     style="top: 3rem;"/>
+                                </div> 
                             </div> 
-                        </div> 
+                        </div>  
                     </div>  
                 </div>  
             </div>  
-        </div>  
+        </h:form>
     </h:body>
 </html>
 

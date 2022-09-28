@@ -63,13 +63,40 @@ public class EncuestaDAO implements IEncuesta {
             stmt.setString(2, encuesta.getFuma());
             stmt.setString(3, encuesta.getTatuajes());
             stmt.setString(4, encuesta.getForma_academica());
-            stmt.setInt(5, id);
+            stmt.setInt(5, encuesta.getId_usuario());
 
             ResultSet resultado = stmt.executeQuery();
 //            ResultSet result = stmtu.executeQuery();
             while (resultado.next()) {
                 id = resultado.getInt("id_usuario");
             }
+            
+            
+            // actulaizar los datos del usuario
+            String datosUpdate = "update usuario " +
+                    "	set " +
+                    "		fecha_nace=?, " +
+                    "		foto=?, " +
+                    "		celular=?, " +
+                    "		estado_civil=?, " +
+                    "		localizacion=?," +
+                    "		solicitud=?," +
+                    "		encuestado=? " +
+                    "	WHERE id_usuario=?; ";
+            PreparedStatement stmtUpdate = conn.connection.prepareStatement(datosUpdate);
+            
+            stmtUpdate.setString(1, encuesta.getFecha_nace().toString());
+            stmtUpdate.setString(2, encuesta.getFoto());
+            stmtUpdate.setString(3, encuesta.getCelular());
+            stmtUpdate.setString(4, encuesta.getEstado_civil());
+            stmtUpdate.setString(5, encuesta.getLocalizacion());
+            stmtUpdate.setString(6, encuesta.getSolicitud());
+            stmtUpdate.setBoolean(7, true);
+            stmtUpdate.setInt(8, encuesta.getId_usuario());
+            
+            int rowModificados = stmtUpdate.executeUpdate();
+            
+            System.out.println("row modificados: " + rowModificados);
 
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,8 +107,9 @@ public class EncuestaDAO implements IEncuesta {
                 Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
 
-        encuesta.setId_usuario(id);
+        //encuesta.setId_usuario(id);
         return encuesta;
 
     }
